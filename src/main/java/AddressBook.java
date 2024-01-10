@@ -1,18 +1,13 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class AddressBook {
-    private HashMap<String, String> addressBook = new HashMap<>();
+    private HashMap<String, Set<String>> addressBook = new HashMap<>();
 
     /** Метод добавляет контакт в телефонный справочник */
     public void add(String surname, String phoneNumber) {
-        if(addressBook.containsKey(surname) && !addressBook.get(surname).contains(phoneNumber)){
-            addressBook.put(surname, addressBook.get(surname) + ", " + phoneNumber);
-        }
-        else{
-            addressBook.put(surname, phoneNumber);
-        }
+        Set<String> phoneNumbers = addressBook.containsKey(surname) ? addressBook.get(surname) : new HashSet<>();
+        phoneNumbers.add(phoneNumber);
+        addressBook.put(surname, phoneNumbers);
     }
 
     /** Метод выводит телефон контакта из телефонного справочника,

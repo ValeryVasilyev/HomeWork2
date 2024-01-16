@@ -13,11 +13,11 @@ public class AddressBook {
     /** Метод выводит телефон контакта из телефонного справочника,
      * в т.ч. если контакт встречается в справочнике несколько раз */
     public void get(String surname) {
-        for (String contact : addressBook.keySet()) {
-            if (contact.equals(surname)) {
-                System.out.println("Contact: " + surname + " has phone number: " + addressBook.get(surname));
-             }
+        Set<String> phoneNumbers = addressBook.get(surname);
+        if (phoneNumbers != null) {
+            System.out.println("Contact: " + surname + " has phone number: " + phoneNumbers);
+        } else {
+            System.out.println("Contact: " + surname + " has NOT any phone number");
         }
-
     }
 }
